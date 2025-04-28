@@ -1,11 +1,9 @@
 components:
 - components:
-  - components: []
-    data_bindings: []
-    layout_properties: {grid_position: 'VUHMSG,LVNAGV'}
+  - layout_properties: {grid_position: 'HAUTYH,EJEWVF'}
     name: dashboard_panel
-    properties: {height: 815.5, spacing_above: none, spacing_below: none}
-    type: XYPanel
+    properties: {}
+    type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel
   properties: {}
