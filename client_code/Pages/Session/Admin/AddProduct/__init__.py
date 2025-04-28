@@ -14,9 +14,9 @@ class AddProduct(AddProductTemplate):
     try:
       print("🛠 Tentative d'ajout de produit...")
 
-      name = self.name_textbox.text
-      description = self.description_textbox.text
-      price_text = self.price_textbox.text
+      name = self.add_pb_name.text
+      description = self.add_description.text
+      price_text = self.add_price.text
       stock_text = self.stock_textbox.text
       photo = self.photo_loader.file
       category = self.category_textbox.text
@@ -37,7 +37,7 @@ class AddProduct(AddProductTemplate):
         return
 
       # Appel au serveur
-      result = anvil.server.call('add_product', name, description, price, stock, photo, category)
+      result = anvil.server.call('add_product', name, description, price, stock, photo)
       
       print(f"✅ Produit ajouté avec succès : {result}")
       Notification(result, style="success").show()
@@ -45,10 +45,10 @@ class AddProduct(AddProductTemplate):
       # Optionnel : réinitialiser le formulaire
       self.add_pb_name.text = ""
       self.add_description.text = ""
-      self.price_textbox.text = ""
+      self.add_price.text = ""
       self.stock_textbox.text = ""
       self.file_loader_1.file = None
-      self.category_textbox.text = ""
+      
 
     except Exception as e:
       print(f"❌ Erreur inattendue : {e}")

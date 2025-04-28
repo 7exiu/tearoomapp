@@ -28,6 +28,11 @@ def set_user_info(email, id):
     anvil.server.session['user_id'] = id
     print(f"✅ SESSION ITEMS INITIALIZED: {anvil.server.session})")
 
+@anvil.server.callable  
+def get_all_users():
+  print("📋 Récupération de tous les utilisateurs...")
+  return list(app_tables.users.search())
+
 @anvil.server.callable
 def get_user_info():
     return {"user_email":anvil.server.session.get('user_email'), "user_id":anvil.server.session.get('user_id')}

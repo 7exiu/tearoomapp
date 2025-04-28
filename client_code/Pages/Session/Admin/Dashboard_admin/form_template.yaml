@@ -20,31 +20,29 @@ components:
     type: Link
   - components: []
     event_bindings: {click: cart_link_click}
+    layout_properties: {}
     name: cart_link_copy
     properties:
       spacing:
         margin: [null, '3', null, '3']
-      text: Cart
+      text: Ajouter un Produit
     type: Link
   - event_bindings: {click: orders_link_click}
+    layout_properties: {}
     name: orders_link_copy
     properties:
       spacing:
         margin: [null, '3', null, '3']
-      text: Orders
+      text: Liste des Clients
     type: Link
   - components: []
     event_bindings: {click: link_1_click}
+    layout_properties: {}
     name: link_1
     properties:
       spacing:
         margin: [null, '3', null, '3']
-      text: Bookings
-    type: Link
-  - event_bindings: {click: link_3_click}
-    layout_properties: {}
-    name: link_3
-    properties: {text: Admin}
+      text: 'Liste des produits '
     type: Link
   layout_properties: {slot: left-nav}
   name: linear_panel_1
@@ -52,7 +50,7 @@ components:
   type: LinearPanel
 - layout_properties: {slot: title}
   name: outlined_1
-  properties: {background: 'theme:Primary Container', bold: true, italic: true, role: outlined, text: DASHBOARD, underline: true}
+  properties: {background: 'theme:Primary Container', bold: true, italic: true, role: outlined, text: 'DASHBOARD_Admin ', underline: true}
   type: TextBox
 - event_bindings: {click: link_2_click}
   layout_properties: {slot: nav-right}
