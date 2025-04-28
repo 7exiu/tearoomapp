@@ -66,3 +66,7 @@ class Dashboard(DashboardTemplate):
     self.dashboard_panel.clear()  # On vide le panneau
     profile_form = Profile(self.user)  # On charge à nouveau le formulaire Profile
     self.dashboard_panel.add_component(profile_form)  # On ajoute Profile au dashboard_panel
+
+  def link_2_click(self, **event_args):
+    get_open_form().load_page("landing")
+    pass

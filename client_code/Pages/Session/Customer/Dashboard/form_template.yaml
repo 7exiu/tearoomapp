@@ -49,7 +49,12 @@ components:
   name: outlined_1
   properties: {background: 'theme:Primary Container', bold: true, italic: true, role: outlined, text: DASHBOARD, underline: true}
   type: TextBox
+- event_bindings: {click: link_2_click}
+  layout_properties: {slot: nav-right}
+  name: link_2
+  properties: {background: '#ecccc1', text: TeasRoom}
+  type: Link
 container:
-  properties: {html: '@theme:standard-page.html'}
+  properties: {background: '#dbbeb4', html: '@theme:standard-page.html'}
   type: HtmlTemplate
 is_package: true

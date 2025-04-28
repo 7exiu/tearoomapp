@@ -46,7 +46,7 @@ class Bookings(BookingsTemplate):
      try:
       teas = anvil.server.call('get_teas')
       for tea in teas:
-        self.teas_flow_panel.add_component(Image(source=tea['image']))
+        self.teas_panel.add_component(Image(source=tea['image']))
      except Exception as e:
       alert(f"Erreur lors du chargement des images : {e}")
 
@@ -65,5 +65,13 @@ class Bookings(BookingsTemplate):
     def profile_link_click(self, **event_args):
         """Clique sur le lien 'Profil'"""
         get_open_form().load_page("profile")
+
+    def teas_list_button_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      pass
+
+    def goodies_list_button_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      pass
 
 

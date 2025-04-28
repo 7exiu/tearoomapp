@@ -35,6 +35,6 @@ components:
   properties: {}
   type: FlowPanel
 container:
-  properties: {background: 'theme:Primary Container', col_widths: '{"YHNKTD":35,"VRYAMP":25}'}
+  properties: {background: '#dbbeb4', col_widths: '{"YHNKTD":35,"VRYAMP":25}'}
   type: ColumnPanel
 is_package: true

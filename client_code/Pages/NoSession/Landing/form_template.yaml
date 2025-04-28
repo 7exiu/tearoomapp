@@ -102,5 +102,7 @@ components:
   name: landing_linear_panel
   properties: {}
   type: LinearPanel
-container: {type: ColumnPanel}
+container:
+  properties: {col_widths: '{"JLYCTA":30,"YVAURG":30}'}
+  type: ColumnPanel
 is_package: true
