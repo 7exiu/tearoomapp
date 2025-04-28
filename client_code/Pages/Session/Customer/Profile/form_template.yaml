@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'MDYXMJ,YHNKTD'}
   name: profile_photo
-  properties: {}
+  properties: {height: 300.6666564941406}
   type: Image
 - components:
   - components:
@@ -34,5 +34,7 @@ components:
   name: profile_flow_panel
   properties: {}
   type: FlowPanel
-container: {type: ColumnPanel}
+container:
+  properties: {background: 'theme:Primary Container', col_widths: '{"YHNKTD":35,"VRYAMP":25}'}
+  type: ColumnPanel
 is_package: true

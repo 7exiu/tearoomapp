@@ -28,7 +28,11 @@ class SouCart(SouCartTemplate):
         self.cart_price.text = f"{cart['price']}"
         print("Prix affiché :", self.cart_price.text)
     
-        self.cart_description.text = cart["description"]
+        
+
+  def table_card_booking_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
 
 
 

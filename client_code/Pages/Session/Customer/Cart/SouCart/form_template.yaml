@@ -1,42 +1,43 @@
 components:
 - components:
-  - data_bindings:
-    - {code: 'self.item[''image'']', property: source, writeback: false}
-    layout_properties: {width: 266.515625}
+  - layout_properties: {width: 294.33331298828125}
     name: cart_image
-    properties: {display_mode: fill_width}
+    properties: {height: 132}
     type: Image
-  - components:
-    - data_bindings: []
-      event_bindings: {}
-      layout_properties: {}
-      name: cart_name
-      properties: {icon: ''}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''description'']', property: text, writeback: false}
-      layout_properties: {}
-      name: cart_description
-      properties: {icon: ''}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''price'']', property: text, writeback: false}
-      layout_properties: {}
-      name: cart_price
-      properties: {align: right}
-      type: Label
-    layout_properties: {width: 458.9375}
-    name: cart_card_info_linear_panel
-    properties: {}
-    type: LinearPanel
-  layout_properties: {slot: default}
-  name: cart_card_flow_panel
+  - data_bindings:
+    - {code: 'self.item[''name'']', property: text, writeback: false}
+    layout_properties: {expand: false}
+    name: cart_name
+    properties: {font: italic, font_size: 18, foreground: 'theme:On Primary', role: headline}
+    type: Label
+  - layout_properties: {width: 298.625}
+    name: spacer_2
+    properties: {height: 32}
+    type: Spacer
+  - name: cart_price
+    properties: {font: '', font_size: 14, foreground: 'theme:On Primary'}
+    type: Label
+  - layout_properties: {width: 47.312625976562515}
+    name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+  - event_bindings: {click: table_card_booking_button_click}
+    layout_properties: {}
+    name: tea_link
+    properties:
+      foreground: ''
+      role: elevated-button
+      spacing:
+        margin: [null, '0', null, '0']
+      text: More
+    type: Button
+  layout_properties: {grid_position: 'GIOWQK,DAYVIX'}
+  name: table_card_row_panel
   properties:
+    background: theme:Primary
     spacing:
-      margin: [null, '400', null, null]
-      padding: [null, 0, null, null]
+      padding: [null, '10', null, '10']
+    vertical_align: middle
   type: FlowPanel
-container:
-  properties: {html: '@theme:standard-page.html'}
-  type: HtmlTemplate
+container: {type: ColumnPanel}
 is_package: true
