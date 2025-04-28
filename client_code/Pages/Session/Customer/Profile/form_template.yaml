@@ -1,0 +1,38 @@
+components:
+- layout_properties: {grid_position: 'MDYXMJ,YHNKTD'}
+  name: profile_photo
+  properties: {}
+  type: Image
+- components:
+  - components:
+    - name: profile_name
+      properties: {}
+      type: Label
+    - layout_properties: {}
+      name: spacer_1
+      properties: {height: 9}
+      type: Spacer
+    - layout_properties: {}
+      name: spacer_2
+      properties: {height: 9.25}
+      type: Spacer
+    - name: profile_password
+      properties: {}
+      type: Label
+    - layout_properties: {}
+      name: spacer_3
+      properties: {height: 5.75}
+      type: Spacer
+    - name: profile_email
+      properties: {}
+      type: Label
+    layout_properties: {width: 516.0625}
+    name: profile_info
+    properties: {}
+    type: LinearPanel
+  layout_properties: {grid_position: 'MDYXMJ,VRYAMP'}
+  name: profile_flow_panel
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true

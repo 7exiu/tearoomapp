@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'UVYEGX,UGBYTQ'}
+  name: name_fields_1
+  properties: {}
+  type: form:Components.NameFields
+container: {type: ColumnPanel}
+is_package: true
