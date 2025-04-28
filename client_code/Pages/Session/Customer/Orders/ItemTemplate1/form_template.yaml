@@ -30,6 +30,9 @@ components:
         margin: [null, '0', null, '0']
       text: Détails
     type: Button
+  - name: finish
+    properties: {text: check_box_1}
+    type: CheckBox
   layout_properties: {grid_position: 'NCHFBI,LRUPNX'}
   name: table_card_row_panel
   properties:
