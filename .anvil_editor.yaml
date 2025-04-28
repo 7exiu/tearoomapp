@@ -49,6 +49,9 @@ unique_ids:
     Pages.Session.Customer: '1744421210933294421847591.3849'
   scripts: {}
   server_modules:
+    AdminController: '1745867697353577973140548.9108'
+    AdminController.AddUserController: '1745867724523924052149760.7086'
+    AdminController.AddUserController.crud: '1745867751452267451105260.71335'
     CartController: '1744547557725727823168843.4679'
     ProductsController: '1744407809611602178200198.5619'
     ProductsController.GoodiesController: '1744493142148445748485602.2367'
