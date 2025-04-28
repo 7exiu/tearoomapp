@@ -16,3 +16,7 @@ class ItemTemplate1(ItemTemplate1Template):
   def table_card_booking_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     pass
+
+  def finish_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    pass

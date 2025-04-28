@@ -35,9 +35,10 @@ unique_ids:
     Pages.Session.Customer.Dashboard: '1744551330502969883513483.5891'
     Pages.Session.Customer.Dashboard.Profile: '1745824800799792748381951.3398'
     Pages.Session.Customer.Dashboard.Profile.InfoCard: '1745829575603432828038719.695'
+    Pages.Session.Customer.DetailOrder: '1745856239904315841244005.16876'
+    Pages.Session.Customer.DetailOrder.ItemTemplate2: '1745856423273307046522046.581'
     Pages.Session.Customer.Orders: '1744395946048973489595426.2286'
     Pages.Session.Customer.Orders.ItemTemplate1: '1745855776168411193591258.2063'
-    Pages.Session.Customer.Orders.RowTemplate1: '1744962685652959301975258.6774'
     Pages.Session.Customer.Profile: '1744395984874390266018271.3591'
   modules:
     Components: '1744423512559652696990326.185'

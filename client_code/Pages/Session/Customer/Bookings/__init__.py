@@ -34,38 +34,21 @@ class Bookings(BookingsTemplate):
             alert(f"Erreur lors du chargement des images des goodies : {e}")
 
     def display_goodies(self):
-        try:
-            # Appel serveur pour récupérer les goodies
-            goodies = anvil.server.call('get_goodies')
-            print(f"Goodies chargés : {goodies}")
-            
-            # Réinitialiser les composants existants avant d'ajouter les nouveaux
-            self.goodie_panel.clear()
-            
-            # Ajouter chaque image de goodie au flow panel des goodies
-            for goodie in goodies:
-                # Créez une carte GoodieCard pour chaque goodie et ajoutez-la à column_panel_1
-                goodie_card = GoodieCard(item=goodie)
-                self.goodie_panel.add_component(goodie_card)
-        except Exception as e:
-            alert(f"Erreur lors du chargement des images des goodies : {e}")
+      try:
+        goodies = anvil.server.call('get_goodies')
+        for goodie in goodies:
+          self.goodie_panel.add_component(Image(source=goodie['image']))
+      except Exception as e:
+        alert(f"Erreur lors du chargement des images : {e}")
 
+    
     def display_teas(self):
-        try:
-            # Appel serveur pour récupérer les thés
-            teas = anvil.server.call('get_teas')
-            print(f"Thés chargés : {teas}")
-            
-            # Réinitialiser les composants existants avant d'ajouter les nouveaux
-            self.teas_flow_panel.clear()
-            
-            # Ajouter chaque image de thé au flow panel des thés
-            for tea in teas:
-                # Créez une carte TeaCard pour chaque thé et ajoutez-la à flow_panel_1
-                tea_card = TeaCard(item=tea)
-                self.teas_flow_panel.add_component(tea_card)
-        except Exception as e:
-            alert(f"Erreur lors du chargement des images des thés : {e}")
+     try:
+      teas = anvil.server.call('get_teas')
+      for tea in teas:
+        self.teas_flow_panel.add_component(Image(source=tea['image']))
+     except Exception as e:
+      alert(f"Erreur lors du chargement des images : {e}")
 
     def form_show(self, **event_args):
         """Cette méthode est appelée quand le formulaire est affiché"""
