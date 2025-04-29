@@ -129,7 +129,17 @@ db_schema:
       type: bool
     - admin_ui: {order: 4, width: 200}
       name: content
-      type: simpleObject
+      target: temp
+      type: link_multiple
+    - admin_ui: {order: 5, width: 200}
+      name: update_at
+      type: datetime
+    - admin_ui: {order: 6, width: 200}
+      name: total_amount
+      type: number
+    - admin_ui: {order: 7, width: 200}
+      name: status
+      type: string
     server: full
     title: orders
   tables:
