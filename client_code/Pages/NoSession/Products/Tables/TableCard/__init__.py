@@ -13,7 +13,7 @@ class TableCard(TableCardTemplate):
     # Récupération des données de la table
     tearoom_table = self.item 
 
-    # Mise à jour des champs individuels (optionnel si tu gardes aussi un résumé dans le bouton)
+    # Mise à jour des champs individuels
     self.table_card_is_available.text = "Available" if tearoom_table["is_available"] else "Not available"
     self.table_card_capacity.text = str(tearoom_table["chairs_count"]) + " people"
     
@@ -27,8 +27,11 @@ class TableCard(TableCardTemplate):
     tearoom_table = self.item
     print(f"🔘 Bouton cliqué pour la table : {tearoom_table['name']}")
 
-    user = anvil.users.get_user()
-    if not user:
+    # Appel à la fonction serveur personnalisée pour récupérer l'utilisateur via la session
+    user_info = anvil.server.call('get_user_info')
+    user_id = user_info.get('user_id', None)
+
+    if not user_id:
         Notification("❌ Vous devez être connecté pour réserver une table.").show()
         print("❌ Utilisateur non connecté.")
         return
@@ -40,7 +43,7 @@ class TableCard(TableCardTemplate):
             name=tearoom_table['name'],
             chairs_count=tearoom_table['chairs_count'],
             is_available=tearoom_table['is_available'],
-            user_id=user.get_id()
+            user_id=user_id
         )
         Notification("✅ Table ajoutée à temp.").show()
         print("✅ Réponse serveur :", result)
@@ -48,11 +51,3 @@ class TableCard(TableCardTemplate):
     except Exception as e:
         print(f"❌ Erreur lors de l'ajout : {e}")
         Notification(f"Erreur : {e}").show()
-
-
-
-
-
-
-
-
