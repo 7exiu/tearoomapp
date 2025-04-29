@@ -1,4 +1,12 @@
-components: []
+components:
+- layout_properties: {grid_position: 'SAKNCV,BOJWSV'}
+  name: firstname_field
+  properties: {background: 'theme:My Primary Color', foreground: 'theme:On Surface', placeholder: Enter your firstname}
+  type: TextBox
+- layout_properties: {grid_position: 'JNDFBC,UWQLXT'}
+  name: lastname_field
+  properties: {background: 'theme:My Primary Color', foreground: 'theme:On Surface', placeholder: Enter your lastname}
+  type: TextBox
 container:
   properties: {visible: true}
   type: ColumnPanel
