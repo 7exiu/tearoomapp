@@ -33,6 +33,7 @@ unique_ids:
     Pages.Session.Admin.ListProducts.Teacard_admin: '1745915518178842860138197.7157'
     Pages.Session.Customer.Bookings: '1744551513482605399906947.8003'
     Pages.Session.Customer.Cart: '1744395927988337302771335.7637'
+    Pages.Session.Customer.Cart.ItemTemplate3: '174591782676182549520072.97067'
     Pages.Session.Customer.Cart.SouCart: '1745837350795786572123698.3252'
     Pages.Session.Customer.Dashboard: '1744551330502969883513483.5891'
     Pages.Session.Customer.Dashboard.Profile: '1745824800799792748381951.3398'

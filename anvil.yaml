@@ -40,6 +40,10 @@ db_schema:
     - admin_ui: {order: 3, width: 200}
       name: prix_u
       type: number
+    - admin_ui: {order: 4, width: 200}
+      name: tables
+      target: tables
+      type: link_multiple
     server: full
     title: card
   carts:
