@@ -22,9 +22,18 @@ components:
         name: table_card_capacity
         properties: {font: '', foreground: 'theme:On Primary'}
         type: Label
+      - layout_properties: {width: 310}
+        name: spacer_1
+        properties: {height: 32}
+        type: Spacer
       name: table_card_capacity_panel
       properties: {}
       type: FlowPanel
+    - event_bindings: {click: outlined_button_1_click}
+      layout_properties: {}
+      name: outlined_button_1
+      properties: {background: 'theme:Primary Container', icon_align: right, role: outlined-button, text: Booking}
+      type: Button
     layout_properties: {expand: true}
     name: table_card_availability_capacity
     properties: {}

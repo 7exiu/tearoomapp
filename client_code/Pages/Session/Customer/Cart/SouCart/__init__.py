@@ -9,30 +9,37 @@ from ..... import state
 class SouCart(SouCartTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
-    print("la ca marche")
     self.form_show()
 
-    
   def form_show(self, **event_args):
-        cart = self.item
+    try:
+      # Récupérer toutes les cartes depuis la table temp
+      cards = anvil.server.call('get_card')
 
-        print(">>> item reçu dans cartCard :", self.item)
+      if not cards:
+        print("❌ Aucune carte trouvée dans la table temp.")
+        self.cart_name.text = "Aucune carte"
+        return
 
-        self.cart_name.text = cart["name"]
-        img = cart["image"]
-        if isinstance(img, Media) or isinstance(img, str):
-            self.cart_image.source = img
-        else:
-          self.cart_image.source = "https://placehold.co/200x150?text=Image+manquante"
+      # Ici on prend simplement la première (ou tu peux faire une logique + avancée)
+      cart = cards[0]
+      print(">>> Carte chargée depuis la DB temp :", cart)
 
-        self.cart_price.text = f"{cart['price']}"
-        print("Prix affiché :", self.cart_price.text)
-    
-        
+      # Nom
+      self.cart_name.text = cart.get("name", "Nom inconnu")
 
-  def table_card_booking_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+      # Image
+      img = cart.get("image")
+      self.cart_image.source = img if isinstance(img, (Media, str)) else "https://placehold.co/200x150?text=Image+manquante"
 
+      # Prix
+      self.cart_price.text = f"{cart.get('price', 0)} €"
 
+      # Date (optionnelle selon ta table)
+      if "time" in cart and cart["time"]:
+        self.cart_date.text = cart["time"].strftime("%d/%m/%Y %H:%M")
+      else:
+        self.cart_date.text = "Date non disponible"
 
+    except Exception as e:
+      print(f"❌ Erreur lors du chargement de la carte : {e}")
