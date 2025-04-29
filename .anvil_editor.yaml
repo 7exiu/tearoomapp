@@ -42,6 +42,7 @@ unique_ids:
     Pages.Session.Customer.DetailOrder.ItemTemplate2: '1745856423273307046522046.581'
     Pages.Session.Customer.Orders: '1744395946048973489595426.2286'
     Pages.Session.Customer.Orders.ItemTemplate1: '1745855776168411193591258.2063'
+    Pages.Session.Customer.Orders.OrderDetails: J2HMRR6H75X5G7PUH75STKVRC55BJLCL
     Pages.Session.Customer.Profile: '1744395984874390266018271.3591'
   modules:
     Components: '1744423512559652696990326.185'
@@ -62,6 +63,7 @@ unique_ids:
     AdminController.ListClient.crud: '1745912934733335185069013.2594'
     AdminController.ListProducts: '1745912428428369048697942.02734'
     CartController: '1744547557725727823168843.4679'
+    OrdersController: RGYG5H6BYF76P6GC66D6N55JBGPR6AAT
     ProductsController: '1744407809611602178200198.5619'
     ProductsController.GoodiesController: '1744493142148445748485602.2367'
     ProductsController.GoodiesController.crud: '17444933434019491600231.415487'
@@ -71,6 +73,7 @@ unique_ids:
     ProductsController.TeasController: '1744493130249450289114288.6667'
     ProductsController.TeasController.crud: '1744493273534361562420221.67786'
     ProductsController.TeasController.stats: '1744493279383661707695552.1807'
+    ReceiptGenerator: TWTVB7X56M3P7CZTAGXJETEUYEGGLBPS
     Recu: '1745958175068305163016277.36755'
     SessionController: '1744481071275675381878338.5073'
     StegPhoto: '1744877795725549049351179.51624'
