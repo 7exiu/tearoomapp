@@ -22,9 +22,14 @@ class Cart(CartTemplate):
       self.date_label.text = "Date expiration"
       self.crypto_label.text = "cryptogramme"
       self.outlined_button_1.set_event_handler('click', self.button_pop_click)
+      souscart= anvil.server.call("panier")
+      self.cart_repeating_panel.item_template = SouCart
+      self.cart_repeating_panel.items = souscart
 
     def button_pop_click(self, **event_args):
       alert("Votre commande a était prise en compte")
+      anvil.server.call('delete_card')
+
 
     def calculer_total(self):
       total = sum(item['price'] for item in state.cart_items)

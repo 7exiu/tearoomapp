@@ -22,7 +22,6 @@ import io
 
 @anvil.server.callable
 def add_metadata(image_media, email):
-    import io
 
     try:
         # Lire les bytes du fichier

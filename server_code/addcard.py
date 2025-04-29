@@ -2,21 +2,60 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
-from datetime import datetime
 
+
+# This is a server module. It runs on the Anvil server,
+# rather than in the user's browser.
+#
+# To allow anvil.server.call() to call functions here, we mark
+# them with @anvil.server.callable.
+# Here is an example - you can replace it with your own:
+#
+# @anvil.server.callable
+# def say_hello(name):
+#   print("Hello, " + name + "!")
+#   return 42
+#
+
+
+'''
+@anvil.server.callable
+def addcard(product_id):
+    # Rechercher le produit par ID dans la base de données
+    product = app_tables.teas.get_by_id(product_id)
+
+    if product is not None:
+        print("=== Produit trouvé ===")
+        print(f"ID         : {product.get_id()}")
+        print(f"Nom        : {product['name']}")
+        print(f"Prix       : {product['price']} €")
+        print(f"Description: {product['description']}")
+        print(f"Image      : {product['image']}")
+        return product
+    else:
+        print("⚠️ Produit introuvable avec l'ID :", product_id)
+        return None
+
+
+'''
 @anvil.server.callable
 def addcard(product_id):
     # Rechercher le produit par ID dans la base de données
     article = app_tables.teas.get_by_id(product_id)
+    user_data = anvil.server.call('get_user_info')
+    user_id = user_data['user_id']
 
+    print(user_id)
     if article is not None:
         print("=== Produit trouvé ===")
         identifiant = product_id
         app_tables.temp.add_row(
-            name=article['name'],
-            price=article['price'],
-            image=article['image'],
-            description=article['description']
+        name = article['name'],
+        etat = False,
+        price = article['price'],
+        image = article['image'], 
+        description = article['description'],
+        id_user = user_id
         )
         return identifiant
     else:
@@ -24,44 +63,52 @@ def addcard(product_id):
         return None
 
 @anvil.server.callable
-def reserve_table_for_user(user_id):
-    """Réserve une table disponible pour un utilisateur donné (si disponible)."""
-    try:
-        if not user_id:
-            raise ValueError("ID utilisateur manquant.")
+def addgoodie(product_id):
+    # Rechercher le produit par ID dans la base de données
+    article = app_tables.goodies.get_by_id(product_id)
+    user_data = anvil.server.call('get_user_info')
+    user_id = user_data['user_id']
+    print(user_id)
 
-        # Rechercher toutes les tables disponibles
-        available_tables = app_tables.tables.search(is_available=True)
-
-        if not available_tables:
-            print("❌ Aucune table disponible.")
-            return "Aucune table disponible pour le moment."
-
-        # Réserver la première table disponible
-        table = available_tables[0]
-        table.update(
-            is_available=False,
-            reserved_by=user_id,
-            reserved_at=datetime.now()
+    if article is not None:
+        print("=== Produit trouvé ===")
+        identifiant = product_id
+        app_tables.temp.add_row(
+        name = article['name'],
+        price = article['price'],
+        etat = False,
+        image = article['image'], 
+        description = article['description'],
+        id_user = user_id,
         )
 
-        print(f"✅ Table réservée avec succès : ID={table.get_id()}")
-        return table
+        return identifiant
+    else:
+        print("⚠️ Produit introuvable avec l'ID :", product_id)
+        return None
 
-    except Exception as e:
-        print(f"❌ Erreur lors de la réservation de table : {e}")
-        return f"Erreur : {e}"
-
-@anvil.server.callable
-def add_table_to_temp(name, chairs_count, is_available, user_id):
-    print(f"🚀 Ajout à temp : {name}, {chairs_count}, {is_available}, {user_id}")
-    return app_tables.temp.add_row(
-        name=name,
-        price = 180,
-        is_available=is_available,
-        reserved_by=user_id,
-        time=datetime.now()
-    )
 @anvil.server.callable
 def get_card():
-    return list(app_tables.temp.search())
+  return list(app_tables.temp.search())
+
+@anvil.server.callable
+def panier():
+  user_data = anvil.server.call('get_user_info')
+  user_id = user_data['user_id']
+  print(user_id)
+  print(user_data)
+  return list(app_tables.temp.search(id_user=user_id , etat= False))
+
+  
+@anvil.server.callable
+def delete_card():
+    user_data = anvil.server.call('get_user_info')
+    user_id = user_data['user_id']
+    produits_a_modifier = app_tables.temp.search(id_user=user_id, etat=False)
+    for produit in produits_a_modifier:
+        produit['etat'] = True
+
+    print("parfait")
+    return 
+
+  

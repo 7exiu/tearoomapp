@@ -9,6 +9,8 @@ from ..... import state
 class GoodieCard(GoodieCardTemplate):
     def __init__(self, **properties):
       self.init_components(**properties)
+      self.add_to_cart_button.set_event_handler('click', self.add_to_cart_button_click)
+
 
     def form_show(self, **event_args):
       goodie = self.item
@@ -24,3 +26,14 @@ class GoodieCard(GoodieCardTemplate):
     def button_add_click(self, **event_args):
       #state.add_to_cart(self.item)
       pass
+
+    def add_to_cart_button_click(self, **event_args):
+      goodie = self.item
+      row_id = goodie.get_id()
+      print(row_id)
+      cleaned_str = row_id.strip("[]")
+      numbers = cleaned_str.split(',')
+      result = numbers[1] if len(numbers) > 1 else None
+      print(result, "dkfhqslkjgfhqszkhgfghqsKHASHGKHYH")
+      anvil.server.call('addgoodie' , row_id)
+
