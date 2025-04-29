@@ -78,4 +78,3 @@ container:
     background: '#f5f0e6'
     html: '@theme:standard-page.html'
   type: HtmlTemplate
-is_package: true
