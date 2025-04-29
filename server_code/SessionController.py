@@ -6,17 +6,26 @@ from argon2 import PasswordHasher
 
 @anvil.server.callable
 def login_user(email, password):
+    print(f"🔑 Tentative de connexion pour l'email : {email}")
     user = app_tables.users.get(email=email)
     ph = PasswordHasher()
+    
     if user is None:
-        return "Invalid Data"
+        print(f"❌ Utilisateur non trouvé pour l'email : {email}")
+        return "Invalid credentials"
 
-    is_password_valid = ph.verify(user['password'], password)
-    if not is_password_valid:
-        return "Invalid Data"
+    try:
+        is_password_valid = ph.verify(user['password'], password)
+        if not is_password_valid:
+            print(f"❌ Mot de passe incorrect pour l'email : {email}")
+            return "Invalid credentials"
 
-    set_user_info(user['email'], user.get_id())
-    return f"Welcome back {user['firstname']} {user['lastname']}"
+        set_user_info(user['email'], user.get_id())
+        print(f"✅ Connexion réussie pour : {user['firstname']} {user['lastname']}")
+        return f"Welcome back {user['firstname']} {user['lastname']}"
+    except Exception as e:
+        print(f"❌ Erreur lors de la vérification du mot de passe : {e}")
+        return "Invalid credentials"
 
 
 @anvil.server.callable

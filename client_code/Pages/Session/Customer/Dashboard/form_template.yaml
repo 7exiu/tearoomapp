@@ -3,63 +3,103 @@ components:
   layout_properties: {slot: default}
   name: dashboard_panel
   properties:
+    background: '#f9f1f3'
     spacing:
       margin: [null, null, null, 0]
-      padding: [null, '0', null, 0]
+      padding: [null, '20', null, '20']
   type: ColumnPanel
 - components:
   - event_bindings: {click: profile_link_click}
     name: profile_link
     properties:
-      background: '#f9f1f3'
+      background: '#dbbeb4'
       border: ''
       role: selected
       spacing:
-        margin: ['3', '3', '3', '3']
+        margin: ['10', '10', '10', '10']
+        padding: ['10', '10', '10', '10']
       text: Profile
+      icon: fa:user
+      icon_align: left
+      foreground: '#ffffff'
+      font_size: 16
     type: Link
   - components: []
     event_bindings: {click: cart_link_click}
     name: cart_link_copy
     properties:
+      background: '#dbbeb4'
       spacing:
-        margin: [null, '3', null, '3']
+        margin: ['10', '10', '10', '10']
+        padding: ['10', '10', '10', '10']
       text: Cart
+      icon: fa:shopping-cart
+      icon_align: left
+      foreground: '#ffffff'
+      font_size: 16
     type: Link
   - event_bindings: {click: orders_link_click}
     name: orders_link_copy
     properties:
+      background: '#dbbeb4'
       spacing:
-        margin: [null, '3', null, '3']
+        margin: ['10', '10', '10', '10']
+        padding: ['10', '10', '10', '10']
       text: Orders
+      icon: fa:list
+      icon_align: left
+      foreground: '#ffffff'
+      font_size: 16
     type: Link
   - components: []
     event_bindings: {click: link_1_click}
     name: link_1
     properties:
+      background: '#dbbeb4'
       spacing:
-        margin: [null, '3', null, '3']
+        margin: ['10', '10', '10', '10']
+        padding: ['10', '10', '10', '10']
       text: Bookings
-    type: Link
-  - event_bindings: {click: link_3_click}
-    layout_properties: {}
-    name: link_3
-    properties: {text: Admin}
+      icon: fa:calendar
+      icon_align: left
+      foreground: '#ffffff'
+      font_size: 16
     type: Link
   layout_properties: {slot: left-nav}
   name: linear_panel_1
-  properties: {}
+  properties: 
+    background: '#f9f1f3'
+    spacing:
+      padding: ['20', '20', '20', '20']
   type: LinearPanel
 - layout_properties: {slot: title}
   name: outlined_1
-  properties: {background: 'theme:Primary Container', bold: true, italic: true, role: outlined, text: DASHBOARD, underline: true}
+  properties: 
+    background: '#dbbeb4'
+    bold: true
+    font_size: 24
+    foreground: '#ffffff'
+    role: outlined
+    text: DASHBOARD
+    spacing:
+      padding: ['20', '20', '20', '20']
   type: TextBox
 - event_bindings: {click: link_2_click}
   layout_properties: {slot: nav-right}
   name: link_2
-  properties: {background: '#ecccc1', text: TeasRoom}
+  properties: 
+    background: '#dbbeb4'
+    text: TeasRoom
+    icon: fa:home
+    icon_align: left
+    foreground: '#ffffff'
+    font_size: 16
+    spacing:
+      padding: ['10', '10', '10', '10']
   type: Link
 container:
-  properties: {background: '#dbbeb4', html: '@theme:standard-page.html'}
+  properties: 
+    background: '#f9f1f3'
+    html: '@theme:standard-page.html'
   type: HtmlTemplate
 is_package: true
