@@ -65,6 +65,19 @@ components:
       foreground: '#ffffff'
       font_size: 16
     type: Link
+  - event_bindings: {click: menu_button_click}
+    name: menu_button
+    properties:
+      background: '#dbbeb4'
+      spacing:
+        margin: ['10', '10', '10', '10']
+        padding: ['10', '10', '10', '10']
+      text: Retour au Menu
+      icon: fa:cutlery
+      icon_align: left
+      foreground: '#ffffff'
+      font_size: 16
+    type: Link
   layout_properties: {slot: left-nav}
   name: linear_panel_1
   properties: 
@@ -89,8 +102,8 @@ components:
   name: link_2
   properties: 
     background: '#dbbeb4'
-    text: TeasRoom
-    icon: fa:home
+    text: Menu
+    icon: fa:cutlery
     icon_align: left
     foreground: '#ffffff'
     font_size: 16
