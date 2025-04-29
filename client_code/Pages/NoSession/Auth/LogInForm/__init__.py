@@ -27,11 +27,10 @@ class LogInForm(LogInFormTemplate):
       if server_response == "Invalid credentials":
         Notification("Email ou mot de passe incorrect.", style="danger").show()
         print("❌ Connexion refusée : identifiants invalides")
-        return
-
-      Notification("Connexion réussie !", style="success").show()
-      print("✅ Connexion réussie, chargement du dashboard...")
-      get_open_form().load_page('dashboard')
+      else:
+        Notification("Connexion réussie !", style="success").show()
+        print("✅ Connexion réussie, chargement du dashboard...")
+        get_open_form().load_page('dashboard')
 
     except Exception as e:
       print(f"❌ Erreur serveur lors de la connexion : {e}")
