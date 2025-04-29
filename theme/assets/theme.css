@@ -2,32 +2,155 @@
  This CSS implements the Material Design 3 look and feel for Anvil apps.
  **/
 
+/* Styles CafÃ© Chill */
+:root {
+  --cafe-primary: #8b7355;
+  --cafe-secondary: #d4b483;
+  --cafe-background: #f5f0e6;
+  --cafe-text: #4a4a4a;
+  --cafe-hover: #c19e6b;
+}
+
+body {
+  font-family: 'Quicksand', Roboto, Noto, Arial, sans-serif;
+  background-color: var(--cafe-background);
+  color: var(--cafe-text);
+  font-size: 14px;
+  line-height: 1.4286;
+  min-height: calc(100vh - 56px);
+}
 
 .anvil-role-custom-wide {
   width: 100%;
   transition: all 0.3s ease;
 }
+
 .anvil-role-custom-button {
-
-
+  background-color: var(--cafe-secondary);
+  color: white;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: 'Quicksand', sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
-
 
 .anvil-role-custom-button:hover {
-
+  background-color: var(--cafe-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
+
 .anvil-role-landing-tea {
   height: 200px !important;
   width: 200px !important;
-
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
 .anvil-role-scrollable {
   overflow-x: scroll !important;
   overflow-y: hidden;
   height: 200px !important;
   width: 80vw !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cafe-secondary) var(--cafe-background);
 }
 
+.anvil-role-scrollable::-webkit-scrollbar {
+  height: 8px;
+}
+
+.anvil-role-scrollable::-webkit-scrollbar-track {
+  background: var(--cafe-background);
+  border-radius: 4px;
+}
+
+.anvil-role-scrollable::-webkit-scrollbar-thumb {
+  background: var(--cafe-secondary);
+  border-radius: 4px;
+}
+
+.anvil-role-scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--cafe-hover);
+}
+
+/* Styles des cartes */
+.anvil-role-elevated-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.anvil-role-elevated-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Styles des boutons */
+.btn, .btn-default {
+  background-color: var(--cafe-secondary);
+  color: white;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: 'Quicksand', sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.btn:hover, .btn-default:hover {
+  background-color: var(--cafe-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Styles des liens */
+a, a:focus {
+  color: var(--cafe-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover, a:active {
+  color: var(--cafe-hover);
+}
+
+/* Styles des inputs */
+input.anvil-component, textarea.anvil-component, .anvil-component select {
+  background-color: white;
+  border: 2px solid var(--cafe-secondary);
+  border-radius: 8px;
+  padding: 12px;
+  font-family: 'Quicksand', sans-serif;
+  transition: all 0.3s ease;
+}
+
+input.anvil-component:focus, textarea.anvil-component:focus, .anvil-component select:focus {
+  border-color: var(--cafe-primary);
+  box-shadow: 0 0 0 2px rgba(139, 115, 85, 0.2);
+}
+
+/* Styles des notifications */
+body>div[data-notify="container"] {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-left: 4px solid var(--cafe-primary);
+}
+
+body>div[data-notify="container"].alert-success {
+  border-left-color: #28a745;
+}
+
+body>div[data-notify="container"].alert-danger {
+  border-left-color: #dc3545;
+}
+
+body>div[data-notify="container"].alert-warning {
+  border-left-color: #ffc107;
+}
 
 /* Stop panel-cols cutting off drop shadows */
 .anvil-panel-col {
@@ -125,11 +248,8 @@ a>.anvil-component-icon.right_edge-icon,
 
 /* Typography */
 body {
-  font-family: Roboto, Noto, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.4286;
-  color: %color:On Surface%;
-  background-color: %color:Background%;
   min-height: calc(100vh - 56px)
 }
 
@@ -137,15 +257,6 @@ body {
   body {
     background-color: white;
   }
-}
-
-a, a:focus {
-  text-decoration: none;
-  color: %color:Primary%;
-}
-
-a:hover, a:active {
-color: %color:On Primary Container%;
 }
 
 .anvil-role-display {
@@ -795,7 +906,7 @@ button.close > span, button.close {
 }
 
 /* If the first row of a card is a full_width_row, it goes to the top */
-.column-panel.anvil-role-card > .anvil-panel-section:first-child > .anvil-panel-section-container.full-width-row {
+.column-panel.anvil-role-card > .anvil-panel-section:first-child > .anvil-component-container.full-width-row {
   margin-top: -8px;
 }
 .column-panel.anvil-role-card > .anvil-panel-section:last-child > .anvil-panel-section-container.full-width-row {
@@ -1091,90 +1202,4 @@ div.plot-container.plotly svg.main-svg {
 
 .anvil-spinner {
     --anvil-spinner-bg: %color:Surface Variant%;
-}
-
-/* Améliorations de l'expérience utilisateur */
-.anvil-role-custom-wide {
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-/* Amélioration des formulaires */
-input.anvil-component, textarea.anvil-component, .anvil-component select {
-  transition: all 0.3s ease;
-  padding: 12px 16px;
-  border-radius: 8px;
-  background-color: %color:Surface Variant%;
-  color: %color:On Surface Variant%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-input.anvil-component:focus, textarea.anvil-component:focus, .anvil-component select:focus {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transform: translateY(-1px);
-}
-
-/* Amélioration des boutons */
-.btn, .btn-default {
-  transition: all 0.3s ease;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Amélioration des notifications */
-body>div[data-notify="container"] {
-  border-radius: 12px;
-  padding: 16px 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Amélioration des cartes */
-.anvil-role-elevated-card {
-  transition: all 0.3s ease;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.anvil-role-elevated-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Amélioration de la barre de navigation */
-.app-bar {
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Amélioration des liens */
-a {
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: %color:Primary%;
-}
-
-a:hover {
-  color: %color:Primary Container%;
-  text-decoration: underline;
 }
