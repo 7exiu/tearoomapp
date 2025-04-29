@@ -1,72 +1,53 @@
 components:
 - components:
-  - name: order_info
-    properties:
-      background: '#ffffff'
-      border_radius: '8px'
-      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
-      spacing:
-        padding: ['15', '15', '15', '15']
-    type: ColumnPanel
-    components:
-    - name: order_header
-      properties:
-        spacing:
-          margin: ['0', '0', '10', '0']
-      type: LinearPanel
-      components:
+  - components:
+    - components:
       - name: order_date
-        properties:
-          text: 'Date: {{item["time"]}}'
-          font_size: 14
-          font_family: 'Quicksand'
-          foreground: '#8b7355'
+        properties: {font_family: Quicksand, font_size: 14, foreground: '#8b7355', text: 'Date: {{item["time"]}}'}
         type: Label
       - name: order_status
-        properties:
-          text: 'Statut: {{item["status"]}}'
-          font_size: 14
-          font_family: 'Quicksand'
-          foreground: '#8b7355'
-          align: right
+        properties: {align: right, font_family: Quicksand, font_size: 14, foreground: '#8b7355', text: 'Statut: {{item["status"]}}'}
         type: Label
-    - name: order_details
+      name: order_header
       properties:
         spacing:
           margin: ['0', '0', '10', '0']
       type: LinearPanel
-      components:
+    - components:
       - name: order_name
-        properties:
-          text: '{{item["name"]}}'
-          font_size: 16
-          font_family: 'Quicksand'
-          foreground: '#4a4a4a'
-          bold: true
+        properties: {bold: true, font_family: Quicksand, font_size: 16, foreground: '#4a4a4a', text: '{{item["name"]}}'}
         type: Label
       - name: order_price
-        properties:
-          text: '{{item["price"]}} €'
-          font_size: 16
-          font_family: 'Quicksand'
-          foreground: '#4a4a4a'
-          align: right
+        properties: {align: right, font_family: Quicksand, font_size: 16, foreground: '#4a4a4a', text: '{{item["price"]}} €'}
         type: Label
+      name: order_details
+      properties:
+        spacing:
+          margin: ['0', '0', '10', '0']
+      type: LinearPanel
     - name: view_details_button
       properties:
         background: '#d4b483'
-        text: Voir les détails
+        border_radius: 6px
+        box_shadow: 0 2px 4px rgba(0,0,0,0.1)
+        font_family: Quicksand
+        font_size: 14
+        foreground: '#ffffff'
+        hover_background: '#c19e6b'
         icon: fa:eye
         icon_align: left
-        foreground: '#ffffff'
-        font_size: 14
-        font_family: 'Quicksand'
         spacing:
           padding: ['10', '10', '10', '10']
-        hover_background: '#c19e6b'
-        border_radius: '6px'
-        box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
+        text: Voir les détails
       type: Link
+    name: order_info
+    properties:
+      background: '#ffffff'
+      border_radius: 8px
+      box_shadow: 0 2px 4px rgba(0,0,0,0.1)
+      spacing:
+        padding: ['15', '15', '15', '15']
+    type: ColumnPanel
   layout_properties: {slot: default}
   name: column_panel_1
   properties:
@@ -74,8 +55,6 @@ components:
       margin: ['0', '0', '10', '0']
   type: ColumnPanel
 container:
-  properties:
-    background: '#f5f0e6'
-    html: '@theme:standard-page.html'
+  properties: {background: '#f5f0e6', html: '@theme:standard-page.html'}
   type: HtmlTemplate
 is_package: true
