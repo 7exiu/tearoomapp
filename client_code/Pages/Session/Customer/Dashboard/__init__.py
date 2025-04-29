@@ -1,92 +1,82 @@
 from ._anvil_designer import DashboardTemplate
 from anvil import *
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 import anvil.server
 from ..Profile import Profile
 from ..Cart import Cart
 from ..Orders import Orders
 from ..Bookings import Bookings
 from ...Admin.Dashboard_admin import Dashboard_admin
+from .... import state
 
 class Dashboard(DashboardTemplate):
   def __init__(self, **properties):
-    print("🛠 Initialisation du Dashboard...")
     self.init_components(**properties)
+    self.current_page = None
+    self.load_profile()  # Charger automatiquement le Profile
 
-    try:
-      print("📡 Connexion au serveur pour récupérer les informations utilisateur...")
-      self.user_info = anvil.server.call('get_user_info')
-      print(f"✅ Infos utilisateur récupérées : {self.user_info}")
-
-      if not self.user_info.get("user_email"):
-        raise ValueError("Aucun email utilisateur récupéré.")
-
-      print("🔎 Recherche de l'utilisateur dans la base de données...")
-      self.user = anvil.server.call('get_user_by_email', self.user_info["user_email"])
-
-      if not self.user:
-        raise ValueError("Utilisateur introuvable dans la base de données.")
-
-      print(f"🎯 Utilisateur trouvé : {self.user['email']}")
-
-      # Contrôle de l'affichage du bouton Admin (link_3)
-      if self.user['is_admin'] is True:
-        self.link_3.visible = True
-        print("👑 Utilisateur est Admin. Bouton Admin visible.")
-      else:
-        self.link_3.visible = False
-        print("👤 Utilisateur classique. Bouton Admin caché.")
-
-      # Nettoyer l'ancien contenu du dashboard_panel
-      print("🧹 Nettoyage du dashboard_panel...")
-      self.dashboard_panel.clear()
-
-      # Charger le formulaire Profile en passant l'utilisateur
-      print("➕ Ajout du formulaire Profile au dashboard_panel...")
-      profile_form = Profile(self.user)
-      self.dashboard_panel.add_component(profile_form)
-
-      print("✅ Formulaire Profile affiché avec succès dans le Dashboard.")
-
-    except Exception as e:
-      print(f"❌ Erreur dans Dashboard : {e}")
-      Notification(f"Erreur lors du chargement du Dashboard : {e}", style="danger").show()
-      get_open_form().load_page("main")  # Retour à la page principale si erreur
-
-  def link_1_click(self, **event_args):
-    """Lien vers les Bookings"""
-    bookings = Bookings()
+  def load_profile(self):
+    """Charge la page Profile dans le dashboard."""
+    self.current_page = Profile()
     self.dashboard_panel.clear()
-    self.dashboard_panel.add_component(bookings)
+    self.dashboard_panel.add_component(self.current_page)
+    self.update_navigation_style('profile_link')
 
-  def cart_link_click(self, **event_args):
-    """Lien vers le Cart"""
+  def load_cart(self):
+    """Charge la page Cart dans le dashboard."""
+    self.current_page = Cart()
     self.dashboard_panel.clear()
-    cart_form = Cart()
-    self.dashboard_panel.add_component(cart_form)
+    self.dashboard_panel.add_component(self.current_page)
+    self.update_navigation_style('cart_link_copy')
 
-  def orders_link_click(self, **event_args):
-    """Lien vers les Orders"""
+  def load_orders(self):
+    """Charge la page Orders dans le dashboard."""
+    self.current_page = Orders()
     self.dashboard_panel.clear()
-    orders_form = Orders()
-    self.dashboard_panel.add_component(orders_form)
+    self.dashboard_panel.add_component(self.current_page)
+    self.update_navigation_style('orders_link_copy')
+
+  def load_bookings(self):
+    """Charge la page Bookings dans le dashboard."""
+    self.current_page = Bookings()
+    self.dashboard_panel.clear()
+    self.dashboard_panel.add_component(self.current_page)
+    self.update_navigation_style('link_1')
+
+  def update_navigation_style(self, active_link):
+    """Met à jour le style des liens de navigation."""
+    links = [
+      'profile_link',
+      'cart_link_copy',
+      'orders_link_copy',
+      'link_1'
+    ]
+    
+    for link in links:
+      getattr(self, link).role = 'selected' if link == active_link else ''
 
   def profile_link_click(self, **event_args):
-    """Lien vers le Profile"""
-    self.dashboard_panel.clear()
-    profile_form = Profile(self.user)
-    self.dashboard_panel.add_component(profile_form)
+    self.load_profile()
+
+  def cart_link_click(self, **event_args):
+    self.load_cart()
+
+  def orders_link_click(self, **event_args):
+    self.load_orders()
+
+  def link_1_click(self, **event_args):
+    self.load_bookings()
 
   def link_2_click(self, **event_args):
-    """Lien de déconnexion"""
-    get_open_form().load_page("landing")
+    """Redirige vers la page Menu (hors du dashboard)."""
+    get_open_form().load_page('menu')
+
+  def menu_button_click(self, **event_args):
+    """Redirige vers la page Menu (hors du dashboard)."""
+    get_open_form().load_page('menu')
 
   def link_3_click(self, **event_args):
-    """Lien vers Dashboard Admin (réservé aux admins)"""
-    if self.user['is_admin'] is True:
-      print("🔐 Accès au Dashboard Admin autorisé.")
-      self.dashboard_panel.clear()
-      admin_form = Dashboard_admin()
-      self.dashboard_panel.add_component(admin_form)
-    else:
-      print("🚫 Accès interdit : utilisateur non admin.")
-      Notification("Accès réservé aux administrateurs.", style="danger").show()
+    """Redirige vers le dashboard admin."""
+    get_open_form().load_page('dashboard_admin')

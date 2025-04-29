@@ -11,6 +11,27 @@ class SouCart(SouCartTemplate):
     self.init_components(**properties)
     self.form_show()
 
+  def update_quantity(self, new_quantity):
+    if new_quantity >= 1:
+      self.item['quantity'] = new_quantity
+      self.quantity_label.text = str(new_quantity)
+      self.parent.parent.update_total()
+
+  def decrease_button_click(self, **event_args):
+    current_quantity = int(self.quantity_label.text)
+    self.update_quantity(current_quantity - 1)
+
+  def increase_button_click(self, **event_args):
+    current_quantity = int(self.quantity_label.text)
+    self.update_quantity(current_quantity + 1)
+
+  def delete_button_click(self, **event_args):
+    # Supprimer l'article du panier
+    cart_items = self.parent.parent.cart_repeating_panel.items
+    cart_items.remove(self.item)
+    self.parent.parent.cart_repeating_panel.items = cart_items
+    self.parent.parent.update_total()
+
   def form_show(self, **event_args):
     try:
       # Récupérer toutes les cartes depuis la table temp
