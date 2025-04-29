@@ -4,12 +4,11 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+from .... import state
 from ..Profile import Profile
 from ..Cart import Cart
 from ..Orders import Orders
 from ..Bookings import Bookings
-from ...Admin.Dashboard_admin import Dashboard_admin
-from .... import state
 
 class Dashboard(DashboardTemplate):
   def __init__(self, **properties):
@@ -17,11 +16,17 @@ class Dashboard(DashboardTemplate):
     self.current_page = None
     self.user_info = anvil.server.call('get_user_info')
     self.user = anvil.server.call('get_user_by_email', self.user_info['user_email'])
-    self.load_profile()  # Charger automatiquement le Profile
+    
+    # Vérifier si l'utilisateur est admin
+    if self.user and self.user['is_admin']:
+      self.admin_button.visible = True
+    
+    # Charger automatiquement la page Profile
+    self.load_profile()
 
   def load_profile(self):
     """Charge la page Profile dans le dashboard."""
-    self.current_page = Profile(self.user)  # Passer l'utilisateur au Profile
+    self.current_page = Profile(user=self.user)
     self.dashboard_panel.clear()
     self.dashboard_panel.add_component(self.current_page)
     self.update_navigation_style('profile_link')
@@ -47,41 +52,40 @@ class Dashboard(DashboardTemplate):
     self.dashboard_panel.add_component(self.current_page)
     self.update_navigation_style('link_1')
 
-  def update_navigation_style(self, active_link):
+  def update_navigation_style(self, active_link_name):
     """Met à jour le style des liens de navigation."""
-    links = [
-      'profile_link',
-      'cart_link_copy',
-      'orders_link_copy',
-      'link_1'
-    ]
-    
-    for link in links:
-      getattr(self, link).role = 'selected' if link == active_link else ''
+    for link in [self.profile_link, self.cart_link_copy, self.orders_link_copy, self.link_1]:
+      if link.name == active_link_name:
+        link.role = 'selected'
+        link.background = '#495057'  # Couleur plus foncée pour le lien actif
+      else:
+        link.role = None
+        link.background = '#6c757d'  # Couleur normale pour les liens inactifs
 
   def profile_link_click(self, **event_args):
+    """Gère le clic sur le lien Profile."""
     self.load_profile()
 
   def cart_link_click(self, **event_args):
+    """Gère le clic sur le lien Cart."""
     self.load_cart()
 
   def orders_link_click(self, **event_args):
+    """Gère le clic sur le lien Orders."""
     self.load_orders()
 
   def link_1_click(self, **event_args):
+    """Gère le clic sur le lien Bookings."""
     self.load_bookings()
 
-  def link_2_click(self, **event_args):
-    """Redirige vers la page Menu (hors du dashboard)."""
-    get_open_form().load_page('menu')
-
   def menu_button_click(self, **event_args):
-    """Redirige vers la page Menu (hors du dashboard)."""
+    """Gère le clic sur le bouton Retour au Menu."""
     get_open_form().load_page('menu')
 
-  def link_3_click(self, **event_args):
-    """Redirige vers le dashboard admin."""
-    if self.user['is_admin']:
-      get_open_form().load_page('dashboard_admin')
-    else:
-      Notification("Accès réservé aux administrateurs", style="danger").show()
+  def link_2_click(self, **event_args):
+    """Gère le clic sur le lien Menu."""
+    get_open_form().load_page('menu')
+
+  def admin_button_click(self, **event_args):
+    """Gère le clic sur le bouton Administration."""
+    get_open_form().load_page('dashboard_admin')

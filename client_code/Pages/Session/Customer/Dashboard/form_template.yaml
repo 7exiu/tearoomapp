@@ -3,7 +3,7 @@ components:
   layout_properties: {slot: default}
   name: dashboard_panel
   properties:
-    background: '#f9f1f3'
+    background: '#f8f9fa'
     spacing:
       margin: [null, null, null, 0]
       padding: [null, '20', null, '20']
@@ -12,88 +12,108 @@ components:
   - event_bindings: {click: profile_link_click}
     name: profile_link
     properties:
-      background: '#dbbeb4'
+      background: '#6c757d'
       border: ''
       role: selected
       spacing:
         margin: ['10', '10', '10', '10']
-        padding: ['10', '10', '10', '10']
-      text: Profile
+        padding: ['15', '15', '15', '15']
+      text: Mon Profil
       icon: fa:user
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
+      hover_background: '#495057'
     type: Link
   - components: []
     event_bindings: {click: cart_link_click}
     name: cart_link_copy
     properties:
-      background: '#dbbeb4'
+      background: '#6c757d'
       spacing:
         margin: ['10', '10', '10', '10']
-        padding: ['10', '10', '10', '10']
-      text: Cart
+        padding: ['15', '15', '15', '15']
+      text: Mon Panier
       icon: fa:shopping-cart
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
+      hover_background: '#495057'
     type: Link
   - event_bindings: {click: orders_link_click}
     name: orders_link_copy
     properties:
-      background: '#dbbeb4'
+      background: '#6c757d'
       spacing:
         margin: ['10', '10', '10', '10']
-        padding: ['10', '10', '10', '10']
-      text: Orders
+        padding: ['15', '15', '15', '15']
+      text: Mes Commandes
       icon: fa:list
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
+      hover_background: '#495057'
     type: Link
   - components: []
     event_bindings: {click: link_1_click}
     name: link_1
     properties:
-      background: '#dbbeb4'
+      background: '#6c757d'
       spacing:
         margin: ['10', '10', '10', '10']
-        padding: ['10', '10', '10', '10']
-      text: Bookings
+        padding: ['15', '15', '15', '15']
+      text: Mes Réservations
       icon: fa:calendar
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
+      hover_background: '#495057'
     type: Link
   - event_bindings: {click: menu_button_click}
     name: menu_button
     properties:
-      background: '#dbbeb4'
+      background: '#28a745'
       spacing:
         margin: ['10', '10', '10', '10']
-        padding: ['10', '10', '10', '10']
+        padding: ['15', '15', '15', '15']
       text: Retour au Menu
       icon: fa:cutlery
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
+      hover_background: '#218838'
+    type: Link
+  - event_bindings: {click: admin_button_click}
+    name: admin_button
+    properties:
+      background: '#dc3545'
+      spacing:
+        margin: ['10', '10', '10', '10']
+        padding: ['15', '15', '15', '15']
+      text: Administration
+      icon: fa:shield
+      icon_align: left
+      foreground: '#ffffff'
+      font_size: 16
+      visible: false
+      hover_background: '#c82333'
     type: Link
   layout_properties: {slot: left-nav}
   name: linear_panel_1
   properties: 
-    background: '#f9f1f3'
+    background: '#f8f9fa'
     spacing:
       padding: ['20', '20', '20', '20']
   type: LinearPanel
 - layout_properties: {slot: title}
   name: outlined_1
   properties: 
-    background: '#dbbeb4'
+    background: '#343a40'
     bold: true
     font_size: 24
     foreground: '#ffffff'
     role: outlined
-    text: DASHBOARD
+    text: Tableau de Bord
     spacing:
       padding: ['20', '20', '20', '20']
   type: TextBox
@@ -101,18 +121,19 @@ components:
   layout_properties: {slot: nav-right}
   name: link_2
   properties: 
-    background: '#dbbeb4'
+    background: '#28a745'
     text: Menu
     icon: fa:cutlery
     icon_align: left
     foreground: '#ffffff'
     font_size: 16
     spacing:
-      padding: ['10', '10', '10', '10']
+      padding: ['15', '15', '15', '15']
+    hover_background: '#218838'
   type: Link
 container:
   properties: 
-    background: '#f9f1f3'
+    background: '#f8f9fa'
     html: '@theme:standard-page.html'
   type: HtmlTemplate
 is_package: true

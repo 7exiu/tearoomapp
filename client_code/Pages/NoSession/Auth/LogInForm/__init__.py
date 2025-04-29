@@ -9,32 +9,45 @@ from .... import state
 class LogInForm(LogInFormTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
-    self.form_buttons.submit_button.add_event_handler('click', self.on_submit_click)
+    self.update_button_visibility()
+
+  def update_button_visibility(self):
+    """Met à jour la visibilité des boutons en fonction de l'état de connexion."""
+    user_info = anvil.server.call('get_user_info')
+    if user_info:
+      # Utilisateur connecté
+      self.form_buttons.login_button.visible = False
+      self.form_buttons.dashboard_button.visible = True
+    else:
+      # Utilisateur non connecté
+      self.form_buttons.login_button.visible = True
+      self.form_buttons.dashboard_button.visible = False
 
   def on_submit_click(self, **event_args):
-    print("✅ Tentative de connexion...")
-    email = self.credentials_fields.email_field.text
-    password = self.credentials_fields.password_field.text
-
-    if not email or not password:
-      Notification("Tous les champs doivent être remplis.", style="danger").show()
+    """Gère la soumission du formulaire de connexion."""
+    # Vérifier si les champs sont vides
+    if not self.credentials_fields.email_input.text or not self.credentials_fields.password_input.text:
+      Notification("Veuillez remplir tous les champs", style="danger").show()
       return
 
     try:
-      server_response = anvil.server.call('login_user', email, password)
-
-      # Test si l'identifiant ou mot de passe est incorrect
-      if server_response == "Invalid credentials":
-        Notification("Email ou mot de passe incorrect.", style="danger").show()
-        print("❌ Connexion refusée : identifiants invalides")
+      # Appeler la fonction serveur pour la connexion
+      result = anvil.server.call('login_user', 
+                                self.credentials_fields.email_input.text,
+                                self.credentials_fields.password_input.text)
+      
+      if result == "Invalid Data":
+        Notification("Email ou mot de passe incorrect", style="danger").show()
       else:
-        Notification("Connexion réussie !", style="success").show()
-        print("✅ Connexion réussie, chargement du dashboard...")
+        Notification("Connexion réussie", style="success").show()
+        self.update_button_visibility()
         get_open_form().load_page('dashboard')
-
     except Exception as e:
-      print(f"❌ Erreur serveur lors de la connexion : {e}")
-      Notification(f"Erreur lors de la connexion : {e}", style="danger").show()
+      Notification(f"Erreur lors de la connexion : {str(e)}", style="danger").show()
+
+  def dashboard_button_click(self, **event_args):
+    """Redirige vers le dashboard."""
+    get_open_form().load_page('dashboard')
 
   def form_hide(self, **event_args):
     pass
