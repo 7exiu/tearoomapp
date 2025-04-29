@@ -15,11 +15,13 @@ class Dashboard(DashboardTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
     self.current_page = None
+    self.user_info = anvil.server.call('get_user_info')
+    self.user = anvil.server.call('get_user_by_email', self.user_info['user_email'])
     self.load_profile()  # Charger automatiquement le Profile
 
   def load_profile(self):
     """Charge la page Profile dans le dashboard."""
-    self.current_page = Profile()
+    self.current_page = Profile(self.user)  # Passer l'utilisateur au Profile
     self.dashboard_panel.clear()
     self.dashboard_panel.add_component(self.current_page)
     self.update_navigation_style('profile_link')
@@ -79,4 +81,7 @@ class Dashboard(DashboardTemplate):
 
   def link_3_click(self, **event_args):
     """Redirige vers le dashboard admin."""
-    get_open_form().load_page('dashboard_admin')
+    if self.user['is_admin']:
+      get_open_form().load_page('dashboard_admin')
+    else:
+      Notification("Accès réservé aux administrateurs", style="danger").show()
