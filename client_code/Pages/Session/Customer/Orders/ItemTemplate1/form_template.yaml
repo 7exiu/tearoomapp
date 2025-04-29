@@ -1,47 +1,57 @@
 components:
 - components:
   - data_bindings:
-    - {code: 'self.item[''name'']', property: text, writeback: false}
+    - {code: 'self.item[''id'']', property: text, writeback: false}
     layout_properties: {expand: false}
-    name: order_name
-    properties: {font: italic, font_size: 18, foreground: 'theme:On Primary', role: headline, text: ''}
+    name: order_id
+    properties: 
+      font_size: 16
+      foreground: '#dbbeb4'
+      bold: true
     type: Label
-  - layout_properties: {width: 298.625}
-    name: spacer_2
-    properties: {height: 32}
-    type: Spacer
-  - name: order_date
-    properties: {}
+  - data_bindings:
+    - {code: 'self.item[''created_at'']', property: text, writeback: false}
+    layout_properties: {expand: false}
+    name: order_date
+    properties: 
+      font_size: 14
+      foreground: '#666666'
     type: Label
-  - name: order_price
-    properties: {font: '', font_size: 14, foreground: 'theme:On Primary'}
+  - data_bindings:
+    - {code: 'self.item[''status'']', property: text, writeback: false}
+    layout_properties: {expand: false}
+    name: order_status
+    properties: 
+      font_size: 14
+      foreground: '#dbbeb4'
     type: Label
-  - layout_properties: {width: 47.312625976562515}
-    name: spacer_1
-    properties: {height: 32}
-    type: Spacer
-  - event_bindings: {click: table_card_booking_button_click}
+  - data_bindings:
+    - {code: 'self.item[''total_amount'']', property: text, writeback: false}
+    layout_properties: {expand: false}
+    name: order_total
+    properties: 
+      font_size: 16
+      foreground: '#dbbeb4'
+      bold: true
+    type: Label
+  - event_bindings: {click: view_details_click}
     layout_properties: {}
-    name: detail_buotton
-    properties:
-      foreground: ''
-      role: elevated-button
-      spacing:
-        margin: [null, '0', null, '0']
-      text: Détails
+    name: view_details_button
+    properties: 
+      background: '#dbbeb4'
+      foreground: '#ffffff'
+      text: Voir les détails
+      icon: fa:eye
+      icon_align: left
     type: Button
-  - event_bindings: {change: finish_change}
-    layout_properties: {}
-    name: finish
-    properties: {text: Terminé}
-    type: CheckBox
-  layout_properties: {grid_position: 'NCHFBI,LRUPNX'}
-  name: table_card_row_panel
+  layout_properties: {grid_position: 'YUHGLC,LTEOTU'}
+  name: order_card
   properties:
-    background: theme:Primary
+    background: '#ffffff'
     spacing:
-      padding: [null, '10', null, '10']
-    vertical_align: middle
+      padding: ['20', '20', '20', '20']
+      margin: ['10', '10', '10', '10']
+    role: elevated-card
   type: FlowPanel
 container: {type: ColumnPanel}
 is_package: true
