@@ -1,27 +1,26 @@
 components:
 - components:
-  - layout_properties: {grid_position: 'ESLRYZ,SKAKJY ZLMMZB,WPCLSP'}
-    name: image_1
-    properties: {}
-    type: Image
-  - layout_properties: {grid_position: 'ESLRYZ,SKAKJY UJADEO,HWNTXC'}
+  - event_bindings: {pressed_enter: add_pb_name_pressed_enter}
+    layout_properties: {grid_position: 'OLTUKS,AECSBB'}
+    name: add_pb_name
+    properties: {placeholder: Nom du produit}
+    type: TextBox
+  - event_bindings: {pressed_enter: add_price_pressed_enter}
+    layout_properties: {grid_position: 'KTCIQT,WQUIIH'}
+    name: add_price
+    properties: {placeholder: Prix}
+    type: TextBox
+  - event_bindings: {pressed_enter: add_description_pressed_enter}
+    layout_properties: {grid_position: 'UUSKFH,NBBFLB'}
+    name: add_description
+    properties: {placeholder: Description}
+    type: TextBox
+  - layout_properties: {grid_position: ''}
     name: file_loader_1
     properties: {}
     type: FileLoader
-  - layout_properties: {grid_position: 'ESLRYZ,FDQSBY OLTUKS,AECSBB'}
-    name: add_pb_name
-    properties: {}
-    type: TextBox
-  - layout_properties: {grid_position: 'ESLRYZ,FDQSBY KTCIQT,WQUIIH'}
-    name: add_price
-    properties: {}
-    type: TextBox
-  - layout_properties: {grid_position: 'ESLRYZ,FDQSBY UUSKFH,NBBFLB'}
-    name: add_description
-    properties: {}
-    type: TextBox
   - event_bindings: {click: add_pd_click}
-    layout_properties: {grid_position: 'ESLRYZ,FDQSBY OPQJNY,PXCFDO'}
+    layout_properties: {grid_position: 'OPQJNY,PXCFDO'}
     name: add_pd
     properties: {text: 'Ajouter un nouveau produit '}
     type: Button
