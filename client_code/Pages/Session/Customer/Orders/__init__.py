@@ -37,9 +37,9 @@ class Orders(OrdersTemplate):
   def view_details_click(self, **event_args):
     """Gère le clic sur le bouton Voir les détails."""
     order_id = event_args['sender'].item['id']
-    order_details = anvil.server.call('get_order_details', order_id)
-    if order_details:
-      alert(OrderDetails(order=order_details), large=True)
+    order = anvil.server.call('get_order_details', order_id)
+    if order:
+      alert(OrderDetails(order=order), large=True)
     else:
       Notification("Impossible de charger les détails de la commande", style="danger").show()
 
