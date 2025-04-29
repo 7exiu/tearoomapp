@@ -48,6 +48,17 @@ components:
       foreground: '#dbbeb4'
       bold: true
     type: Label
+  - layout_properties: {expand: false}
+    name: receipt_button
+    properties:
+      text: Télécharger le reçu
+      icon: 'fa:file-pdf-o'
+      background: '#dbbeb4'
+      foreground: '#ffffff'
+      bold: true
+      spacing:
+        margin: ['20', '0', '0', '0']
+    type: Button
   layout_properties: {slot: default}
   name: details_container
   properties: {}

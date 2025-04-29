@@ -11,6 +11,7 @@ class OrderDetails(OrderDetailsTemplate):
     self.init_components(**properties)
     if order_id:
       self.load_order_details(order_id)
+      self.current_order_id = order_id
 
   def load_order_details(self, order_id):
     # Récupérer les détails de la commande
@@ -54,4 +55,38 @@ class OrderDetails(OrderDetailsTemplate):
       'delivered': 'Livrée',
       'cancelled': 'Annulée'
     }
-    return status_labels.get(status, status) 
+    return status_labels.get(status, status)
+
+  def receipt_button_click(self, **event_args):
+    """Génère et télécharge le reçu de la commande."""
+    if hasattr(self, 'current_order_id'):
+      # Récupérer les informations de l'utilisateur
+      user_info = anvil.server.call('get_user_info')
+      
+      # Récupérer les détails de la commande
+      order_details = anvil.server.call('get_order_details', self.current_order_id, user_info['user_id'])
+      
+      if order_details:
+        # Préparer les données pour le reçu
+        receipt_data = {
+          'order_id': order_details['id'],
+          'date': order_details['time'].strftime("%d/%m/%Y %H:%M"),
+          'customer_name': f"{user_info['first_name']} {user_info['last_name']}",
+          'customer_email': user_info['email'],
+          'products': [{
+            'name': order_details['name'],
+            'price': order_details['price'],
+            'description': order_details['description']
+          }],
+          'total': order_details['price']
+        }
+        
+        # Générer le reçu
+        pdf = anvil.server.call('generate_receipt', receipt_data)
+        
+        # Télécharger le reçu
+        anvil.media.download(pdf)
+      else:
+        Notification("Impossible de générer le reçu", style="danger").show()
+    else:
+      Notification("Aucune commande sélectionnée", style="danger").show() 
