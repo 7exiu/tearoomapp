@@ -62,6 +62,7 @@ unique_ids:
     AdminController.ListClient.crud: '1745912934733335185069013.2594'
     AdminController.ListProducts: '1745912428428369048697942.02734'
     CartController: '1744547557725727823168843.4679'
+    OrdersController: TXOBSYVDX7ADKNPJK55B3TBF3QC5372Z
     ProductsController: '1744407809611602178200198.5619'
     ProductsController.GoodiesController: '1744493142148445748485602.2367'
     ProductsController.GoodiesController.crud: '17444933434019491600231.415487'
@@ -71,6 +72,7 @@ unique_ids:
     ProductsController.TeasController: '1744493130249450289114288.6667'
     ProductsController.TeasController.crud: '1744493273534361562420221.67786'
     ProductsController.TeasController.stats: '1744493279383661707695552.1807'
+    ReceiptGenerator: TBD5VUGZWNWO3YOVJN77MHYHFIWKNO2L
     Recu: '1745958175068305163016277.36755'
     SessionController: '1744481071275675381878338.5073'
     StegPhoto: '1744877795725549049351179.51624'

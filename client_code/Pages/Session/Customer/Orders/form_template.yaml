@@ -2,20 +2,20 @@ components:
 - components:
   - name: title_label
     properties:
-      text: Mes Commandes
-      font_size: 24
-      font_family: 'Playfair Display'
-      foreground: '#8b7355'
       bold: true
+      font_family: Playfair Display
+      font_size: 24
+      foreground: '#8b7355'
       spacing:
         margin: ['0', '0', '20', '0']
+      text: Mes Commandes
     type: Label
   - components: []
     name: orders_panel
     properties:
       background: '#ffffff'
-      border_radius: '12px'
-      box_shadow: '0 4px 6px rgba(0,0,0,0.1)'
+      border_radius: 12px
+      box_shadow: 0 4px 6px rgba(0,0,0,0.1)
       spacing:
         padding: ['20', '20', '20', '20']
     type: ColumnPanel
@@ -23,18 +23,18 @@ components:
     name: menu_button
     properties:
       background: '#8b7355'
-      text: Retour au Menu
+      border_radius: 8px
+      box_shadow: 0 2px 4px rgba(0,0,0,0.1)
+      font_family: Quicksand
+      font_size: 16
+      foreground: '#ffffff'
+      hover_background: '#7a6448'
       icon: fa:cutlery
       icon_align: left
-      foreground: '#ffffff'
-      font_size: 16
-      font_family: 'Quicksand'
       spacing:
         margin: ['20', '0', '0', '0']
         padding: ['15', '15', '15', '15']
-      hover_background: '#7a6448'
-      border_radius: '8px'
-      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
+      text: Retour au Menu
     type: Link
   layout_properties: {slot: default}
   name: column_panel_1
@@ -44,8 +44,6 @@ components:
       padding: ['20', '20', '20', '20']
   type: ColumnPanel
 container:
-  properties:
-    background: '#f5f0e6'
-    html: '@theme:standard-page.html'
+  properties: {background: '#f5f0e6', html: '@theme:standard-page.html'}
   type: HtmlTemplate
 is_package: true
