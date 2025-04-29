@@ -3,7 +3,7 @@ components:
   layout_properties: {slot: default}
   name: dashboard_panel
   properties:
-    background: '#f8f9fa'
+    background: '#f5f0e6'
     spacing:
       margin: [null, null, null, 0]
       padding: [null, '20', null, '20']
@@ -12,7 +12,7 @@ components:
   - event_bindings: {click: profile_link_click}
     name: profile_link
     properties:
-      background: '#6c757d'
+      background: '#d4b483'
       border: ''
       role: selected
       spacing:
@@ -23,13 +23,16 @@ components:
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
-      hover_background: '#495057'
+      font_family: 'Quicksand'
+      hover_background: '#c19e6b'
+      border_radius: '8px'
+      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
     type: Link
   - components: []
     event_bindings: {click: cart_link_click}
     name: cart_link_copy
     properties:
-      background: '#6c757d'
+      background: '#d4b483'
       spacing:
         margin: ['10', '10', '10', '10']
         padding: ['15', '15', '15', '15']
@@ -38,12 +41,15 @@ components:
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
-      hover_background: '#495057'
+      font_family: 'Quicksand'
+      hover_background: '#c19e6b'
+      border_radius: '8px'
+      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
     type: Link
   - event_bindings: {click: orders_link_click}
     name: orders_link_copy
     properties:
-      background: '#6c757d'
+      background: '#d4b483'
       spacing:
         margin: ['10', '10', '10', '10']
         padding: ['15', '15', '15', '15']
@@ -52,13 +58,16 @@ components:
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
-      hover_background: '#495057'
+      font_family: 'Quicksand'
+      hover_background: '#c19e6b'
+      border_radius: '8px'
+      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
     type: Link
   - components: []
     event_bindings: {click: link_1_click}
     name: link_1
     properties:
-      background: '#6c757d'
+      background: '#d4b483'
       spacing:
         margin: ['10', '10', '10', '10']
         padding: ['15', '15', '15', '15']
@@ -67,12 +76,15 @@ components:
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
-      hover_background: '#495057'
+      font_family: 'Quicksand'
+      hover_background: '#c19e6b'
+      border_radius: '8px'
+      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
     type: Link
   - event_bindings: {click: menu_button_click}
     name: menu_button
     properties:
-      background: '#28a745'
+      background: '#8b7355'
       spacing:
         margin: ['10', '10', '10', '10']
         padding: ['15', '15', '15', '15']
@@ -81,12 +93,15 @@ components:
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
-      hover_background: '#218838'
+      font_family: 'Quicksand'
+      hover_background: '#7a6448'
+      border_radius: '8px'
+      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
     type: Link
   - event_bindings: {click: admin_button_click}
     name: admin_button
     properties:
-      background: '#dc3545'
+      background: '#8b7355'
       spacing:
         margin: ['10', '10', '10', '10']
         padding: ['15', '15', '15', '15']
@@ -95,45 +110,54 @@ components:
       icon_align: left
       foreground: '#ffffff'
       font_size: 16
+      font_family: 'Quicksand'
       visible: false
-      hover_background: '#c82333'
+      hover_background: '#7a6448'
+      border_radius: '8px'
+      box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
     type: Link
   layout_properties: {slot: left-nav}
   name: linear_panel_1
   properties: 
-    background: '#f8f9fa'
+    background: '#f5f0e6'
     spacing:
       padding: ['20', '20', '20', '20']
   type: LinearPanel
 - layout_properties: {slot: title}
   name: outlined_1
   properties: 
-    background: '#343a40'
+    background: '#8b7355'
     bold: true
     font_size: 24
+    font_family: 'Playfair Display'
     foreground: '#ffffff'
     role: outlined
     text: Tableau de Bord
     spacing:
       padding: ['20', '20', '20', '20']
+    border_radius: '8px'
+    box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
   type: TextBox
 - event_bindings: {click: link_2_click}
   layout_properties: {slot: nav-right}
   name: link_2
   properties: 
-    background: '#28a745'
+    background: '#8b7355'
     text: Menu
     icon: fa:cutlery
     icon_align: left
     foreground: '#ffffff'
     font_size: 16
+    font_family: 'Quicksand'
     spacing:
       padding: ['15', '15', '15', '15']
-    hover_background: '#218838'
+    hover_background: '#7a6448'
+    border_radius: '8px'
+    box_shadow: '0 2px 4px rgba(0,0,0,0.1)'
   type: Link
 container:
   properties: 
-    background: '#f8f9fa'
+    background: '#f5f0e6'
     html: '@theme:standard-page.html'
   type: HtmlTemplate
 is_package: true

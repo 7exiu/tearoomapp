@@ -57,10 +57,10 @@ class Dashboard(DashboardTemplate):
     for link in [self.profile_link, self.cart_link_copy, self.orders_link_copy, self.link_1]:
       if link.name == active_link_name:
         link.role = 'selected'
-        link.background = '#495057'  # Couleur plus foncée pour le lien actif
+        link.background = '#c19e6b'  # Couleur plus foncée pour le lien actif
       else:
         link.role = None
-        link.background = '#6c757d'  # Couleur normale pour les liens inactifs
+        link.background = '#d4b483'  # Couleur normale pour les liens inactifs
 
   def profile_link_click(self, **event_args):
     """Gère le clic sur le lien Profile."""
