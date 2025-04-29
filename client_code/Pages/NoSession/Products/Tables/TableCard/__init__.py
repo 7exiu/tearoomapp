@@ -27,19 +27,28 @@ class TableCard(TableCardTemplate):
     tearoom_table = self.item
     print(f"🔘 Bouton cliqué pour la table : {tearoom_table['name']}")
 
+    user = anvil.users.get_user()
+    if not user:
+        Notification("❌ Vous devez être connecté pour réserver une table.").show()
+        print("❌ Utilisateur non connecté.")
+        return
+
     try:
-        print("📡 Envoi au serveur...")
-        anvil.server.call(
+        print("📡 Envoi des infos au serveur...")
+        result = anvil.server.call(
             'add_table_to_temp',
             name=tearoom_table['name'],
             chairs_count=tearoom_table['chairs_count'],
             is_available=tearoom_table['is_available'],
-            user_id=anvil.users.get_user().get_id()  # si tu utilises anvil.users
+            user_id=user.get_id()
         )
         Notification("✅ Table ajoutée à temp.").show()
+        print("✅ Réponse serveur :", result)
+
     except Exception as e:
         print(f"❌ Erreur lors de l'ajout : {e}")
         Notification(f"Erreur : {e}").show()
+
 
 
 

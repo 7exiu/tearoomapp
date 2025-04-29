@@ -57,7 +57,7 @@ def add_table_to_temp(name, chairs_count, is_available, user_id):
     print(f"🚀 Ajout à temp : {name}, {chairs_count}, {is_available}, {user_id}")
     return app_tables.temp.add_row(
         name=name,
-        chairs_count=chairs_count,
+        price = 180,
         is_available=is_available,
         reserved_by=user_id,
         time=datetime.now()
