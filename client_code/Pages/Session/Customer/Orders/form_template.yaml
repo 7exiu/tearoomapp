@@ -19,11 +19,14 @@ components:
       spacing:
         padding: ['20', '20', '20', '20']
     type: ColumnPanel
+<<<<<<< HEAD
   - name: repeating_panel_1
     properties:
       item_template: Pages.Session.Customer.Orders.ItemTemplate1
       background: 'transparent'
     type: RepeatingPanel
+=======
+>>>>>>> 4f7b4ab (style)
   - event_bindings: {click: menu_button_click}
     name: menu_button
     properties:
