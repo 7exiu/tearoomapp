@@ -26,19 +26,23 @@ class LogInForm(LogInFormTemplate):
   def on_submit_click(self, **event_args):
     """Gère la soumission du formulaire de connexion."""
     # Vérifier si les champs sont vides
-    if not self.credentials_fields.email_input.text or not self.credentials_fields.password_input.text:
+    if not self.credentials_fields.email_field.text or not self.credentials_fields.password_field.text:
       Notification("Veuillez remplir tous les champs", style="danger").show()
       return
 
     try:
       # Appeler la fonction serveur pour la connexion
       result = anvil.server.call('login_user', 
-                                self.credentials_fields.email_input.text,
-                                self.credentials_fields.password_input.text)
+                                self.credentials_fields.email_field.text,
+                                self.credentials_fields.password_field.text)
       
-      if result == "Invalid Data":
+      if result == "Invalid credentials":  # Correction de la chaîne de caractères
         Notification("Email ou mot de passe incorrect", style="danger").show()
       else:
+        # Mettre à jour l'état de l'utilisateur
+        user_info = anvil.server.call('get_user_info')
+        state.set('user', user_info)
+        
         Notification("Connexion réussie", style="success").show()
         self.update_button_visibility()
         get_open_form().load_page('dashboard')

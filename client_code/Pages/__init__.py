@@ -11,7 +11,7 @@ import anvil.server
 class SharedStateManager:
     def __init__(self):
         self._state = {
-          "user": "Boris A",
+          "user": None,
           "cart": []
         }
         self._listeners = []
